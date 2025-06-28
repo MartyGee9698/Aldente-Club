@@ -1,4 +1,5 @@
 ﻿<Window x:Class="Aldente_Club.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -27,7 +28,14 @@
                             HorizontalAlignment="Left" />
 
         <TextBlock Text="Data prenotazione:" FontWeight="SemiBold" FontSize="14"/>
-        <DatePicker x:Name="DataPicker" Margin="0,3,0,10"/>
+        <DatePicker x:Name="DataPicker"
+            Margin="0,3,0,10"
+            Width="200"
+            Style="{StaticResource MaterialDesignDatePicker}" />
+
+       
+          
+
 
         <TextBlock Text="Ora prenotazione:" FontWeight="SemiBold" FontSize="14"/>
         <ComboBox x:Name="OraComboBox" Width="150" Margin="0,3,0,10">
