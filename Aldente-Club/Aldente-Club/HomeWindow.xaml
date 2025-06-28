@@ -1,0 +1,12 @@
+﻿<Window x:Class="Aldente_Club.HomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Aldente Club" Height="300" Width="300">
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBlock Text="Benvenuti da Al Dente!" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" TextAlignment="Center"/>
+
+        <Button Content="Menu" Width="150" Height="40" Margin="0,5" Click="Menu_Click"/>
+        <Button Content="Prenotazioni" Width="150" Height="40" Margin="0,5" Click="Prenotazioni_Click"/>
+    </StackPanel>
+</Window>
