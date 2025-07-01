@@ -1,66 +1,90 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace Aldente_Club
 {
     public partial class MainWindow : Window
     {
+        private DispatcherTimer timer;
+
         public MainWindow()
         {
             InitializeComponent();
-                 DataPicker.DisplayDateStart = DateTime.Today;
-            DataPicker.DisplayDateEnd = DateTime.Today.AddDays(30);
+
+            // Timer per nascondere il messaggio dopo 3 secondi
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tick;
         }
 
-        private void AggiungiPrenotazione_Click(object sender, RoutedEventArgs e)
+        private void Timer_Tick(object? sender, EventArgs e)
         {
-            // Recupera i valori inseriti
-            string nome = NomeTextBox.Text.Trim();
-            string email = EmailTextBox.Text.Trim();
-            int numeroPersone = PersoneNumeric.Value ?? 1;
-            DateTime? data = DataPicker.SelectedDate;
-            string ora = (OraComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+            RisultatoTextBlock.Visibility = Visibility.Collapsed;
+            timer.Stop();
+        }
 
-            // Validazioni base
-            if (string.IsNullOrEmpty(nome))
+        private void Star_Checked(object sender, RoutedEventArgs e)
+        {
+            var clickedStar = sender as ToggleButton;
+            if (clickedStar == null) return;
+
+            int starNumber = int.Parse(clickedStar.Name.Replace("Star", ""));
+            SetStars(starNumber);
+        }
+
+        private void Star_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var uncheckedStar = sender as ToggleButton;
+            if (uncheckedStar == null) return;
+
+            int starNumber = int.Parse(uncheckedStar.Name.Replace("Star", ""));
+            SetStars(starNumber - 1);
+        }
+
+        private void SetStars(int count)
+        {
+            for (int i = 1; i <= 5; i++)
             {
-                MessageBox.Show("Inserisci il nome del cliente.", "Errore", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                var star = this.FindName("Star" + i) as ToggleButton;
+                if (star != null)
+                {
+                    star.Checked -= Star_Checked;
+                    star.Unchecked -= Star_Unchecked;
+
+                    star.IsChecked = i <= count;
+                    star.Foreground = (i <= count) ? Brushes.Gold : Brushes.Gray;
+
+                    star.Checked += Star_Checked;
+                    star.Unchecked += Star_Unchecked;
+                }
+            }
+        }
+
+        private void InviaFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();  
+
+            int stelleSelezionate = 0;
+            for (int i = 1; i <= 5; i++)
+            {
+                var star = this.FindName("Star" + i) as ToggleButton;
+                if (star != null && star.IsChecked == true)
+                    stelleSelezionate++;
             }
 
-            if (string.IsNullOrEmpty(email) || !email.Contains("@"))
-            {
-                MessageBox.Show("Inserisci un'email valida.", "Errore", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            string commento = CommentTextBox.Text.Trim();
 
-            if (data == null)
-            {
-                MessageBox.Show("Seleziona una data.", "Errore", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            RisultatoTextBlock.Text = $"Grazie per il tuo feedback! Hai valutato {stelleSelezionate} stelle.";
+          
+            RisultatoTextBlock.Visibility = Visibility.Visible;
 
-            if (string.IsNullOrEmpty(ora))
-            {
-                MessageBox.Show("Seleziona un orario.", "Errore", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            timer.Start();
 
-            // Mostra popup di conferma
-            string messaggio = $"Prenotazione registrata con successo:\n\n" +
-                               $"👤 Nome: {nome}\n📧 Email: {email}\n👥 Persone: {numeroPersone}\n📅 Data: {data:dd/MM/yyyy}\n🕒 Ora: {ora}";
-
-            MessageBox.Show(messaggio, "Prenotazione Confermata", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            // Opzionale: cancella i campi dopo la conferma
-            NomeTextBox.Text = "";
-            EmailTextBox.Text = "";
-            PersoneNumeric.Value = 1;
-            DataPicker.SelectedDate = null;
-            OraComboBox.SelectedItem = null;
+            CommentTextBox.Clear();
+            SetStars(0);
         }
     }
-
 }
