@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="RistoranteApp.Views.AntipastoPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="Auto" Width="Auto">
+    <ScrollViewer>
+        <WrapPanel>
+            <!-- Esempio piatto -->
+            <Border BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" Width="200">
+                <StackPanel>
+                    <!--<Image Source="Images/bruschetta.jpg" Height="100" Stretch="UniformToFill"/>-->
+                    <TextBlock Text="Bruschetta" FontWeight="Bold" Margin="0,5"/>
+                    <Button Content="Aggiungi all'ordine" Click="Aggiungi_Click"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Altri piatti simili -->
+        </WrapPanel>
+    </ScrollViewer>
+</UserControl>
