@@ -30,7 +30,7 @@ namespace Aldente_Club
         private void Prenotazioni_Click(object sender, RoutedEventArgs e)
         {
 
-            MessageBox.Show("Qui andrà la schermata del menu.");
+            MessageBox.Show("Qui andrà la schermata delle prenotazioni.");
             // Oppure: nuova finestra per le prenotazioni
 
             //MainWindow prenotazioneWindow = new MainWindow();

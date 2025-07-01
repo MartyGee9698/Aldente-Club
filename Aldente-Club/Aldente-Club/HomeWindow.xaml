@@ -4,7 +4,7 @@
         Title="Aldente Club" Height="300" Width="300">
 
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <TextBlock Text="Benvenuti da Al Dente!" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" TextAlignment="Center"/>
+        <TextBlock Text="Benvenuti da AlDente-Club!" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" TextAlignment="Center"/>
 
         <Button Content="Menu" Width="150" Height="40" Margin="0,5" Click="Menu_Click"/>
         <Button Content="Prenotazioni" Width="150" Height="40" Margin="0,5" Click="Prenotazioni_Click"/>
