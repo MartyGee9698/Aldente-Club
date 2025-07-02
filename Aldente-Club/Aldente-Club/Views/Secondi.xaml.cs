@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace RistoranteApp.Views
 {
-    public partial class AntipastoPage : UserControl
+    public partial class SecondiPage : UserControl
     {
-        public AntipastoPage()
+        public SecondiPage()
         {
             InitializeComponent();
         }

@@ -7,12 +7,20 @@
             <!-- Esempio piatto -->
             <Border BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" Width="200">
                 <StackPanel>
-                    <!--<Image Source="Images/bruschetta.jpg" Height="100" Stretch="UniformToFill"/>-->
-                    <TextBlock Text="Bruschetta" FontWeight="Bold" Margin="0,5"/>
-                    <Button Content="Aggiungi all'ordine" Click="Aggiungi_Click"/>
+                    <Image Source="pack://application:,,,/FotoMenuAlDente/CarbonaraBombs.png"
+       Height="120" Width="180" Stretch="Uniform"/>
+                    <TextBlock Text="Carbonara bombs (polpettine croccanti ripiene di tuorlo d’uovo cremoso, guanciale croccante e pecorino) " FontWeight="Bold" Margin="0,5"/>
+                    <Button Content="Aggiungi all'ordine" Click="Aggiungi_Click" Tag="Carbonara Bombs"/>
                 </StackPanel>
             </Border>
 
+            <Border BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" Width="200">
+                <StackPanel>
+                    <Image Source="pack://application:,,,/FotoMenuAlDente/BruschettaUndercover.png" Height="120" Width="180" Stretch="Uniform"/>
+                    <TextBlock Text="Bruschetta undercover (pane alla ‘nduja con pomodoro confit e basilico fritto)" FontWeight="Bold" Margin="0,5"/>
+                    <Button Content="Aggiungi all'ordine" Click="Aggiungi_Click" Tag="Bruschetta Undercover"/>
+                </StackPanel>
+            </Border>
             <!-- Altri piatti simili -->
         </WrapPanel>
     </ScrollViewer>

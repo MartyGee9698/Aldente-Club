@@ -21,7 +21,10 @@ namespace RistoranteApp.Views
 
         private void Aggiungi_Click(object sender, RoutedEventArgs e)
         {
-
+            if (sender is Button button && button.Tag is string nomePiatto)
+            {
+                MessageBox.Show($"{nomePiatto} aggiunto all'ordine!");
+            }
         }
     }
 }

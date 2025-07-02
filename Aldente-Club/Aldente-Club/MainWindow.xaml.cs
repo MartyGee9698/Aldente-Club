@@ -20,19 +20,19 @@ namespace RistoranteApp
             ContentArea.Content = new Primi();
         }
 
-        //private void Secondo_Click(object sender, RoutedEventArgs e)
-        //{
-        //    ContentArea.Content = new SecondoPage();
-        //}
+        private void Secondi_Click(object sender, RoutedEventArgs e)
+        {
+            ContentArea.Content = new SecondiPage();
+        }
 
-        //private void Dolce_Click(object sender, RoutedEventArgs e)
-        //{
-        //    ContentArea.Content = new DolcePage();
-        //}
+        private void Contorni_Click(object sender, RoutedEventArgs e)
+        {
+            ContentArea.Content = new ContorniPage();
+        }
 
-        //private void Bevande_Click(object sender, RoutedEventArgs e)
-        //{
-        //    ContentArea.Content = new BevandePage();
-        //}
+        private void Dolci_Click(object sender, RoutedEventArgs e)
+        {
+            ContentArea.Content = new DolciPage();
+        }
     }
 }
