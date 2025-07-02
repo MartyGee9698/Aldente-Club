@@ -5,17 +5,24 @@ namespace RistoranteApp.Views
 {
     public partial class SecondiPage : UserControl
     {
-        public SecondiPage()
+   
+        private MainWindow mainWindow;
+
+        public SecondiPage(MainWindow window)
         {
             InitializeComponent();
+            mainWindow = window;
         }
 
         private void Aggiungi_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button button && button.Tag is string nomePiatto)
             {
-                MessageBox.Show($"{nomePiatto} aggiunte all'ordine!");
+                mainWindow.AggiungiAlOrdine(nomePiatto);
+                MessageBox.Show($"{nomePiatto} aggiunto all'ordine!");
             }
         }
     }
 }
+
+
