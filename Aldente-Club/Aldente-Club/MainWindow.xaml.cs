@@ -110,9 +110,16 @@ namespace RistoranteApp
 
         private void Feedback_Click(object sender, RoutedEventArgs e)
         {
-            FeedbackWindow feedbackWindow = new FeedbackWindow();
+            if (!int.TryParse(PrenotazioneIdTextBox.Text, out int idPrenotazione) || idPrenotazione <= 0)
+            {
+                MessageBox.Show("Inserisci prima un ID prenotazione valido.", "Errore");
+                return;
+            }
+
+            FeedbackWindow feedbackWindow = new FeedbackWindow(idPrenotazione);
             feedbackWindow.Show();
         }
+
 
         private void TornaAllaHome_Click(object sender, RoutedEventArgs e)
         {

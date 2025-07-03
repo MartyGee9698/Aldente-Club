@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -9,12 +11,18 @@ namespace Aldente_Club
     public partial class FeedbackWindow : Window
     {
         private DispatcherTimer timer;
+        private int idPrenotazione;
+        private readonly string ordiniPath;
 
-        public FeedbackWindow()
+        public FeedbackWindow(int idPrenotazione)
         {
             InitializeComponent();
+            this.idPrenotazione = idPrenotazione;
 
-            // Timer per nascondere il messaggio dopo 3 secondi
+            string cartellaDocumenti = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "AldenteClub");
+            Directory.CreateDirectory(cartellaDocumenti);
+            ordiniPath = Path.Combine(cartellaDocumenti, "ordini.csv");
+
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(3);
             timer.Tick += Timer_Tick;
@@ -77,14 +85,31 @@ namespace Aldente_Club
 
             string commento = CommentTextBox.Text.Trim();
 
-            RisultatoTextBlock.Text = $"Grazie per il tuo feedback! Hai valutato {stelleSelezionate} stelle.";
+            try
+            {
+                var righe = File.ReadAllLines(ordiniPath).ToList();
 
-            RisultatoTextBlock.Visibility = Visibility.Visible;
+                for (int i = 0; i < righe.Count; i++)
+                {
+                    if (righe[i].StartsWith(idPrenotazione + ";"))
+                    {
+                        righe[i] += $";{stelleSelezionate};\"{commento.Replace("\"", "\"\"")}\"";
+                        break;
+                    }
+                }
 
-            timer.Start();
+                File.WriteAllLines(ordiniPath, righe);
 
-            CommentTextBox.Clear();
-            SetStars(0);
+                RisultatoTextBlock.Text = $"Grazie per il tuo feedback! Hai valutato {stelleSelezionate} stelle.";
+                RisultatoTextBlock.Visibility = Visibility.Visible;
+                timer.Start();
+                CommentTextBox.Clear();
+                SetStars(0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Errore nel salvataggio del feedback: " + ex.Message, "Errore", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
