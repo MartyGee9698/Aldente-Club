@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using RistoranteApp.Views;
@@ -7,12 +9,21 @@ namespace RistoranteApp
 {
     public partial class MainWindow : Window
     {
+        private int prenotazioneID;
+
+        public MainWindow(int idPrenotazione)
+        {
+            InitializeComponent();
+            prenotazioneID = idPrenotazione;
+        }
+
+        // Se vuoi un costruttore senza parametri per test o altro (opzionale)
         public MainWindow()
         {
             InitializeComponent();
+            prenotazioneID = 0; // id non valido
         }
 
-        
         public void AggiungiAlOrdine(string nomePiatto)
         {
             OrderListBox.Items.Add(nomePiatto);
@@ -59,7 +70,6 @@ namespace RistoranteApp
             OrderListBox.Items.Clear();
         }
 
-        // Metodo per evidenziare il bottone attivo
         private void EvidenziaBottone(Button clickedButton)
         {
             foreach (var child in ((StackPanel)clickedButton.Parent).Children)
@@ -71,6 +81,7 @@ namespace RistoranteApp
                 }
             }
         }
+
         private void ConfirmOrder_Click(object sender, RoutedEventArgs e)
         {
             if (OrderListBox.Items.Count == 0)
@@ -79,19 +90,29 @@ namespace RistoranteApp
                 return;
             }
 
-            // Costruisci il testo dell'ordine
-            StringBuilder ordineTesto = new StringBuilder();
-            ordineTesto.AppendLine("Ordine confermato:");
-            foreach (var item in OrderListBox.Items)
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string directoryPath = System.IO.Path.Combine(documentsPath, "AlDenteClub");
+            if (!Directory.Exists(directoryPath))
             {
-                ordineTesto.AppendLine("- " + item.ToString());
+                Directory.CreateDirectory(directoryPath);
+            }
+            string filePath = System.IO.Path.Combine(directoryPath, "ordini.csv");
+
+            if (!File.Exists(filePath))
+            {
+                File.WriteAllText(filePath, "ID_Prenotazione;Nome_Piatto\n");
             }
 
-            MessageBox.Show(ordineTesto.ToString(), "Conferma Ordine");
+            foreach (var item in OrderListBox.Items)
+            {
+                string piatto = item.ToString();
+                string riga = $"{prenotazioneID};{piatto}";
+                File.AppendAllText(filePath, riga + "\n");
+            }
 
-            // Svuota la lista dopo conferma
+            MessageBox.Show("Ordine salvato con successo.", "Conferma Ordine");
+
             OrderListBox.Items.Clear();
         }
-
     }
 }
