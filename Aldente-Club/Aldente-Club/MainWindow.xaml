@@ -3,61 +3,74 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:RistoranteApp"
         Title="Menu AlDente-Club" Height="550" Width="1100">
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+        <Image Source="pack://application:,,,/FotoMenuAlDente/BackGroundMenu.jpg"
+               Stretch="Fill"
+               Opacity="1"
+               Panel.ZIndex="0"/>
+
+        <!-- Contenuto principale -->
+        <Grid Panel.ZIndex="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+
             <!-- Menù laterale -->
-            <ColumnDefinition Width="*"/>
+            <StackPanel Background="BurlyWood" Grid.Column="0">
+                <Button Content="← Torna alla Home" Click="TornaAllaHome_Click" Height="35" Margin="0,0,0,10"/>
+                <TextBlock Text="Categorie" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                <Button x:Name="AntipastiButton" Content="Antipasti" Click="Antipasto_Click" Margin="0,5" Height="40"/>
+                <Button x:Name="PrimiButton" Content="Primi" Click="Primo_Click" Margin="0,5" Height="40"/>
+                <Button x:Name="SecondiButton" Content="Secondi" Click="Secondi_Click" Margin="0,5" Height="40"/>
+                <Button x:Name="ContorniButton" Content="Contorni" Click="Contorni_Click" Margin="0,5" Height="40"/>
+                <Button x:Name="DolciButton" Content="Dolci" Click="Dolci_Click" Margin="0,5" Height="40"/>
+                <Button x:Name="BibiteButton" Content="Bibite / Vini" Click="Bibite_Click" Margin="0,5" Height="40"/>
+                <Separator Margin="0,20"/>
+                <Button x:Name="FeedbackButton" Content="Feedback clienti" Click="Feedback_Click" Margin="3,20,3,0" Height="40"/>
+            </StackPanel>
+
             <!-- Contenuto dinamico -->
-            <ColumnDefinition Width="250"/>
+            <ContentControl x:Name="ContentArea" Grid.Column="1" />
+
             <!-- Lista Ordini -->
-        </Grid.ColumnDefinitions>
+            <Border Grid.Column="2" Background="BurlyWood" Padding="10" Margin="5" BorderBrush="Gray" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- ID Prenotazione -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Titolo Ordine -->
+                        <RowDefinition Height="*"/>
+                        <!-- Lista Ordine -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Svuota -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Conferma -->
+                    </Grid.RowDefinitions>
 
-        <!-- Menù laterale -->
-        <!-- Menù laterale -->
-        <StackPanel Background="LightGray" Grid.Column="0">
-            <Button Content="← Torna alla Home" Click="TornaAllaHome_Click" Height="35" Margin="0,0,0,10"/>
-            <TextBlock Text="Categorie" FontWeight="Bold" FontSize="16" Margin="10,0,0,10"/>
-            <Button x:Name="AntipastiButton" Content="Antipasti" Click="Antipasto_Click" Margin="0,5" Height="40"/>
-            <Button x:Name="PrimiButton" Content="Primi" Click="Primo_Click" Margin="0,5" Height="40"/>
-            <Button x:Name="SecondiButton" Content="Secondi" Click="Secondi_Click" Margin="0,5" Height="40"/>
-            <Button x:Name="ContorniButton" Content="Contorni" Click="Contorni_Click" Margin="0,5" Height="40"/>
-            <Button x:Name="DolciButton" Content="Dolci" Click="Dolci_Click" Margin="0,5" Height="40"/>
-            <Button x:Name="BibiteButton" Content="Bibite / Vini" Click="Bibite_Click" Margin="0,5" Height="40"/>
-            
+                    <!-- ID Prenotazione -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="ID Prenotazione:" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBox x:Name="PrenotazioneIdTextBox" Width="120" Height="25" Margin="10,0,0,0"/>
+                    </StackPanel>
 
-            <!-- Separatore visivo -->
-            <Separator Margin="0,20"/>
+                    <!-- Titolo Ordine -->
+                    <TextBlock Text="Ordine" FontWeight="Bold" FontSize="16" 
+                   Margin="0,0,0,10" HorizontalAlignment="Center" Grid.Row="1"/>
 
-            <!-- Bottone Feedback con più margine -->
-            <Button x:Name="FeedbackButton" Content="Feedback clienti" Click="Feedback_Click" Margin="3,20,3,0" Height="40"/>
-        </StackPanel>
+                    <!-- Lista Ordine -->
+                    <ListBox x:Name="OrderListBox" Grid.Row="2" 
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
-        <!-- Area per visualizzare UserControl -->
-        <ContentControl x:Name="ContentArea" Grid.Column="1" />
-
-        <!-- Lista Ordini -->
-        <Border Grid.Column="2" Background="#FFF0F0F0" Padding="10" Margin="5" BorderBrush="Gray" BorderThickness="1">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Text="Ordine" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" HorizontalAlignment="Center" Grid.Row="0"/>
-
-                <ListBox x:Name="OrderListBox" Grid.Row="1" 
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Stretch" />
-
-                <Button Content="Svuota Ordine" Grid.Row="2" Margin="0,10,0,0" Height="35" Click="ClearOrder_Click"/>
-
-                <Button Content="Conferma Ordine" Grid.Row="3" Margin="0,10,0,0" Height="35" Click="ConfirmOrder_Click"/>
-            </Grid>
-        </Border>
-
+                    <!-- Bottoni -->
+                    <Button Content="Svuota Ordine" Grid.Row="3" Margin="0,10,0,0" Height="35" Click="ClearOrder_Click"/>
+                    <Button Content="Conferma Ordine" Grid.Row="4" Margin="0,10,0,0" Height="35" Click="ConfirmOrder_Click"/>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Window>

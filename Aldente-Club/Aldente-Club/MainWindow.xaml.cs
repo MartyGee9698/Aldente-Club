@@ -1,19 +1,26 @@
-﻿using Aldente_Club;
-using RistoranteApp.Views;
-using System.Text;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Aldente_Club;
+using RistoranteApp.Views;
 
 namespace RistoranteApp
 {
     public partial class MainWindow : Window
     {
+        private readonly string ordiniPath;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            string cartellaDocumenti = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "AldenteClub");
+            Directory.CreateDirectory(cartellaDocumenti);
+            ordiniPath = Path.Combine(cartellaDocumenti, "ordini.csv");
         }
 
-        
         public void AggiungiAlOrdine(string nomePiatto)
         {
             OrderListBox.Items.Add(nomePiatto);
@@ -60,7 +67,6 @@ namespace RistoranteApp
             OrderListBox.Items.Clear();
         }
 
-        // Metodo per evidenziare il bottone attivo
         private void EvidenziaBottone(Button clickedButton)
         {
             foreach (var child in ((StackPanel)clickedButton.Parent).Children)
@@ -72,38 +78,47 @@ namespace RistoranteApp
                 }
             }
         }
+
         private void ConfirmOrder_Click(object sender, RoutedEventArgs e)
         {
             if (OrderListBox.Items.Count == 0)
             {
-                MessageBox.Show("L'ordine è vuoto. Aggiungi almeno un piatto prima di confermare.", "Attenzione");
+                MessageBox.Show("L'ordine Ã¨ vuoto. Aggiungi almeno un piatto prima di confermare.", "Attenzione");
                 return;
             }
 
-            // Costruisci il testo dell'ordine
-            StringBuilder ordineTesto = new StringBuilder();
-            ordineTesto.AppendLine("Ordine confermato:");
-            foreach (var item in OrderListBox.Items)
+            if (!int.TryParse(PrenotazioneIdTextBox.Text, out int idPrenotazione) || idPrenotazione <= 0)
             {
-                ordineTesto.AppendLine("- " + item.ToString());
+                MessageBox.Show("Inserisci un ID prenotazione valido.", "Errore");
+                return;
             }
 
-            MessageBox.Show(ordineTesto.ToString(), "Conferma Ordine");
+            var piatti = OrderListBox.Items.Cast<string>();
+            string record = $"{idPrenotazione};{string.Join(",", piatti)}";
 
-            // Svuota la lista dopo conferma
-            OrderListBox.Items.Clear();
+            try
+            {
+                File.AppendAllText(ordiniPath, record + Environment.NewLine);
+                MessageBox.Show("Ordine confermato e salvato.", "Conferma");
+                OrderListBox.Items.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Errore durante il salvataggio dell'ordine:\n{ex.Message}", "Errore", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
         private void Feedback_Click(object sender, RoutedEventArgs e)
         {
             FeedbackWindow feedbackWindow = new FeedbackWindow();
-            feedbackWindow.Show(); // usa ShowDialog per mostrare la finestra in modalità modale
+            feedbackWindow.Show();
         }
+
         private void TornaAllaHome_Click(object sender, RoutedEventArgs e)
         {
             var home = new Aldente_Club.HomeWindow();
             home.Show();
             this.Close();
         }
-
     }
 }

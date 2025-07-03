@@ -27,6 +27,15 @@ Height="120" Width="180" Stretch="Uniform"/>
                 </StackPanel>
             </Border>
 
+            <Border BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" Width="200">
+                <StackPanel>
+                    <Image Source="pack://application:,,,/FotoMenuAlDente/Pizza4Formaggi.webp"
+Height="120" Width="180" Stretch="Uniform"/>
+                    <TextBlock Text="Pizza 4 Formaggi" FontWeight="Bold" Margin="0,5"/>
+                    <Button Content="Aggiungi all'ordine" Click="Aggiungi_Click" Tag="Pizza ai 4 formaggi"/>
+                </StackPanel>
+            </Border>
+
             <!-- Altri piatti simili -->
         </WrapPanel>
     </ScrollViewer>

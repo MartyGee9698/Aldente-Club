@@ -1,26 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 namespace Aldente_Club
 {
     public partial class PrenotazioneWindow : Window
     {
+        private readonly string prenotazioniPath;
+
         public PrenotazioneWindow()
         {
             InitializeComponent();
 
             DataPicker.DisplayDateStart = DateTime.Today;
             DataPicker.DisplayDateEnd = DateTime.Today.AddDays(30);
+
+            string cartellaDocumenti = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "AldenteClub");
+            Directory.CreateDirectory(cartellaDocumenti); // Crea la cartella se non esiste
+            prenotazioniPath = Path.Combine(cartellaDocumenti, "prenotazioni.csv");
         }
 
         private void AggiungiPrenotazione_Click(object sender, RoutedEventArgs e)
@@ -32,7 +30,7 @@ namespace Aldente_Club
             DateTime? data = DataPicker.SelectedDate;
             string ora = (OraComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
 
-            // Validazioni base
+            // Validazioni
             if (string.IsNullOrEmpty(nome))
             {
                 MessageBox.Show("Inserisci il nome del cliente.", "Errore", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -63,12 +61,23 @@ namespace Aldente_Club
                 return;
             }
 
-            string messaggio = $"Prenotazione registrata con successo:\n\n" +
-                               $"👤 Nome: {nome}\n📧 Email: {email}\n📞 Telefono: {telefono}\n👥 Persone: {numeroPersone}\n📅 Data: {data:dd/MM/yyyy}\n🕒 Ora: {ora}";
+            // Ottieni nuovo ID prenotazione
+            int idPrenotazione = GetNextPrenotazioneID();
 
-            MessageBox.Show(messaggio, "Prenotazione Confermata", MessageBoxButton.OK, MessageBoxImage.Information);
+            // Scrivi su file
+            string record = $"{idPrenotazione};{nome};{email};{telefono};{numeroPersone};{data:yyyy-MM-dd};{ora}";
+            try
+            {
+                File.AppendAllText(prenotazioniPath, record + Environment.NewLine);
+                MessageBox.Show($"Prenotazione registrata con successo.\nID Prenotazione: {idPrenotazione}", "Conferma", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Errore durante il salvataggio della prenotazione:\n{ex.Message}", "Errore", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
-            // Pulizia campi dopo conferma
+            // Reset campi
             NomeTextBox.Text = "";
             EmailTextBox.Text = "";
             TelefonoTextBox.Text = "";
@@ -76,6 +85,25 @@ namespace Aldente_Club
             DataPicker.SelectedDate = null;
             OraComboBox.SelectedItem = null;
         }
+
+        private int GetNextPrenotazioneID()
+        {
+            if (!File.Exists(prenotazioniPath))
+                return 1;
+
+            var lines = File.ReadAllLines(prenotazioniPath);
+            int maxId = 0;
+            foreach (var line in lines)
+            {
+                var parts = line.Split(';');
+                if (parts.Length > 0 && int.TryParse(parts[0], out int id))
+                {
+                    if (id > maxId) maxId = id;
+                }
+            }
+            return maxId + 1;
+        }
+
         private void TornaAllaHome_Click(object sender, RoutedEventArgs e)
         {
             var home = new Aldente_Club.HomeWindow();
@@ -84,4 +112,3 @@ namespace Aldente_Club
         }
     }
 }
-

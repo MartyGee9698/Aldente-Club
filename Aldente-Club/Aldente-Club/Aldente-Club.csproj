@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <None Remove="FotoMenuAlDente\AcquaLete.png" />
+    <None Remove="FotoMenuAlDente\BackGroundMenu.jpg" />
     <None Remove="FotoMenuAlDente\BruschettaUndercover.png" />
     <None Remove="FotoMenuAlDente\CapreseAlPistacchio.jpg" />
     <None Remove="FotoMenuAlDente\CarbonaraBombs.png" />
@@ -19,7 +20,10 @@
     <None Remove="FotoMenuAlDente\MaialeInUniforme.jpg" />
     <None Remove="FotoMenuAlDente\PatateAlFormaggio.jpg" />
     <None Remove="FotoMenuAlDente\PesceSpadaDisorientato.jpg" />
+    <None Remove="FotoMenuAlDente\Pizza4Formaggi.webp" />
+    <None Remove="FotoMenuAlDente\Prenotazione.jpg" />
     <None Remove="FotoMenuAlDente\RisottoAlBlu.jpg" />
+    <None Remove="FotoMenuAlDente\RistoranteAlDente.png" />
     <None Remove="FotoMenuAlDente\SferaDiCapreseEsplosiva.webp" />
     <None Remove="FotoMenuAlDente\TiramisuSenzaRegole.jpeg" />
     <None Remove="FotoMenuAlDente\VinoBianco.jpg" />
@@ -33,6 +37,9 @@
 
   <ItemGroup>
     <Resource Include="FotoMenuAlDente\AcquaLete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\BackGroundMenu.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="FotoMenuAlDente\BruschettaUndercover.png">
@@ -59,7 +66,16 @@
     <Resource Include="FotoMenuAlDente\PesceSpadaDisorientato.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="FotoMenuAlDente\Pizza4Formaggi.webp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\Prenotazione.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="FotoMenuAlDente\RisottoAlBlu.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\RistoranteAlDente.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="FotoMenuAlDente\SferaDiCapreseEsplosiva.webp">

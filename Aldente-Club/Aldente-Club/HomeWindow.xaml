@@ -1,12 +1,21 @@
 ﻿<Window x:Class="Aldente_Club.HomeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Aldente Club" Height="300" Width="300">
+        Title="Aldente Club" Height="600" Width="800">
 
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <TextBlock Text="Benvenuti da AlDente-Club!" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" TextAlignment="Center"/>
+    <Grid>
+        <!-- Immagine di sfondo -->
+        <Image Source="pack://application:,,,/FotoMenuAlDente/RistoranteAlDente.png"
+               Stretch="Fill"
+               Opacity="0.9"
+               Panel.ZIndex="0"/>
 
-        <Button Content="Menu" Width="150" Height="40" Margin="0,5" Click="Menu_Click"/>
-        <Button Content="Prenotazioni" Width="150" Height="40" Margin="0,5" Click="Prenotazioni_Click"/>
-    </StackPanel>
+        <!-- Contenuto principale sopra l'immagine -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Panel.ZIndex="1">
+            <TextBlock Text="Benvenuti da AlDente-Club!" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" TextAlignment="Center"/>
+
+            <Button Content="Menu" Width="150" Height="40" Margin="0,5" Click="Menu_Click"/>
+            <Button Content="Prenotazioni" Width="150" Height="40" Margin="0,5" Click="Prenotazioni_Click"/>
+        </StackPanel>
+    </Grid>
 </Window>
