@@ -10,8 +10,58 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="FotoMenuAlDente\BruschettaUndercover.png" />
+    <None Remove="FotoMenuAlDente\CapreseAlPistacchio.jpg" />
+    <None Remove="FotoMenuAlDente\CarbonaraBombs.png" />
+    <None Remove="FotoMenuAlDente\InsalataSenzaPerdono.jpg" />
+    <None Remove="FotoMenuAlDente\LinguineAll%27Aragosta.jpg" />
+    <None Remove="FotoMenuAlDente\MaialeInUniforme.jpg" />
+    <None Remove="FotoMenuAlDente\PatateAlFormaggio.jpg" />
+    <None Remove="FotoMenuAlDente\PesceSpadaDisorientato.jpg" />
+    <None Remove="FotoMenuAlDente\RisottoAlBlu.jpg" />
+    <None Remove="FotoMenuAlDente\SferaDiCapreseEsplosiva.webp" />
+    <None Remove="FotoMenuAlDente\TiramisuSenzaRegole.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.7.25104.5739" />
     <PackageReference Include="MaterialDesignThemes" Version="5.2.2-ci998" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="FotoMenuAlDente\BruschettaUndercover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\CapreseAlPistacchio.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\CarbonaraBombs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\InsalataSenzaPerdono.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\LinguineAll'Aragosta.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\MaialeInUniforme.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\PatateAlFormaggio.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\PesceSpadaDisorientato.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\RisottoAlBlu.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\SferaDiCapreseEsplosiva.webp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\TiramisuSenzaRegole.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
