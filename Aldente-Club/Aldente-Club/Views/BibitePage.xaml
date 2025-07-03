@@ -6,8 +6,8 @@
         <WrapPanel>
             <Border BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" Width="200">
                 <StackPanel>
-                    <Image Source="pack://application:,,,/FotoMenuAlDente/VinoRosso.png"
-                           Height="120" Width="180" Stretch="Uniform"/>
+                    <Image Source="pack://application:,,,/FotoMenuAlDente/VinoRosso.jpg"
+Height="120" Width="180" Stretch="Uniform"/>
                     <TextBlock Text="Vino Rosso della Casa" FontWeight="Bold" Margin="0,5"/>
                     <Button Content="Aggiungi all'ordine" Click="Aggiungi_Click" Tag="Vino Rosso"/>
                 </StackPanel>
@@ -15,10 +15,19 @@
 
             <Border BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" Width="200">
                 <StackPanel>
-                    <Image Source="pack://application:,,,/FotoMenuAlDente/ColaArtigianale.png"
-                           Height="120" Width="180" Stretch="Uniform"/>
-                    <TextBlock Text="Cola Artigianale" FontWeight="Bold" Margin="0,5"/>
-                    <Button Content="Aggiungi all'ordine" Click="Aggiungi_Click" Tag="Cola Artigianale"/>
+                    <Image Source="pack://application:,,,/FotoMenuAlDente/VinoBianco.jpg"
+Height="120" Width="180" Stretch="Uniform"/>
+                    <TextBlock Text="Vino Bianco" FontWeight="Bold" Margin="0,5"/>
+                    <Button Content="Aggiungi all'ordine" Click="Aggiungi_Click" Tag="Vino Bianco"/>
+                </StackPanel>
+            </Border>
+
+            <Border BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" Width="200">
+                <StackPanel>
+                    <Image Source="pack://application:,,,/FotoMenuAlDente/AcquaLete.png"
+Height="120" Width="180" Stretch="Uniform"/>
+                    <TextBlock Text="Acqua Lete" FontWeight="Bold" Margin="0,5"/>
+                    <Button Content="Aggiungi all'ordine" Click="Aggiungi_Click" Tag="Acqua Lete"/>
                 </StackPanel>
             </Border>
 

@@ -76,6 +76,12 @@ namespace Aldente_Club
             DataPicker.SelectedDate = null;
             OraComboBox.SelectedItem = null;
         }
+        private void TornaAllaHome_Click(object sender, RoutedEventArgs e)
+        {
+            var home = new Aldente_Club.HomeWindow();
+            home.Show();
+            this.Close();
+        }
     }
 }
 

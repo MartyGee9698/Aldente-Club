@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="FotoMenuAlDente\AcquaLete.png" />
     <None Remove="FotoMenuAlDente\BruschettaUndercover.png" />
     <None Remove="FotoMenuAlDente\CapreseAlPistacchio.jpg" />
     <None Remove="FotoMenuAlDente\CarbonaraBombs.png" />
@@ -21,6 +22,8 @@
     <None Remove="FotoMenuAlDente\RisottoAlBlu.jpg" />
     <None Remove="FotoMenuAlDente\SferaDiCapreseEsplosiva.webp" />
     <None Remove="FotoMenuAlDente\TiramisuSenzaRegole.jpeg" />
+    <None Remove="FotoMenuAlDente\VinoBianco.jpg" />
+    <None Remove="FotoMenuAlDente\VinoRosso.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="FotoMenuAlDente\AcquaLete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="FotoMenuAlDente\BruschettaUndercover.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -60,6 +66,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="FotoMenuAlDente\TiramisuSenzaRegole.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\VinoBianco.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FotoMenuAlDente\VinoRosso.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

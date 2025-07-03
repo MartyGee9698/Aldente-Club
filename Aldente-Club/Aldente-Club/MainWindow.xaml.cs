@@ -1,7 +1,8 @@
-﻿using System.Text;
+﻿using Aldente_Club;
+using RistoranteApp.Views;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using RistoranteApp.Views;
 
 namespace RistoranteApp
 {
@@ -91,6 +92,17 @@ namespace RistoranteApp
 
             // Svuota la lista dopo conferma
             OrderListBox.Items.Clear();
+        }
+        private void Feedback_Click(object sender, RoutedEventArgs e)
+        {
+            FeedbackWindow feedbackWindow = new FeedbackWindow();
+            feedbackWindow.Show(); // usa ShowDialog per mostrare la finestra in modalità modale
+        }
+        private void TornaAllaHome_Click(object sender, RoutedEventArgs e)
+        {
+            var home = new Aldente_Club.HomeWindow();
+            home.Show();
+            this.Close();
         }
 
     }

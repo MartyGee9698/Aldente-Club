@@ -5,6 +5,7 @@
         Title="Prenotazione Ristorante" Height="520" Width="400">
     <StackPanel Margin="10">
 
+        <Button Content="← Torna alla Home" Click="TornaAllaHome_Click" Height="35" Margin="0,0,0,10" HorizontalAlignment="Left"/>
         <TextBlock Text="Nome cliente:" FontWeight="SemiBold" FontSize="14"/>
         <TextBox x:Name="NomeTextBox" Margin="0,3,0,10"/>
 

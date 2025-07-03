@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RistoranteApp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,19 +24,18 @@ namespace Aldente_Club
 
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Qui andrà la schermata del menu.");
-            // Oppure: nuova finestra per il menu
+            MainWindow menuWindow = new MainWindow();
+            menuWindow.Show();
+            this.Close();
         }
 
         private void Prenotazioni_Click(object sender, RoutedEventArgs e)
         {
 
-            MessageBox.Show("Qui andrà la schermata delle prenotazioni.");
-            // Oppure: nuova finestra per le prenotazioni
 
-            //MainWindow prenotazioneWindow = new MainWindow();
-            //prenotazioneWindow.Show();
-            //this.Close();
+            PrenotazioneWindow prenotazioneWindow = new PrenotazioneWindow();
+            prenotazioneWindow.Show();
+            this.Close();
         }
     }
 }
